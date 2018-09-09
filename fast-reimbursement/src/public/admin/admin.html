@@ -40,7 +40,7 @@
                         </li>
 
                         <li data-toggle="collapse" data-target=".navbar-collapse.show" class="nav-item">
-                                <a class="nav-link" href="#admin-munu">Admin Option</a>
+                                <a class="nav-link" href="#admin-menu">Admin Option</a>
                         </li>
 
                         <li data-toggle="collapse" data-target=".navbar-collapse.show" class="nav-item">
@@ -53,11 +53,11 @@
                                 <a class="nav-link" href="#contact">Contact</a>
                         </li> -->
                     </ul>
-                    
+<!--                     
                     <form class="form-inline header-search-form my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="text" size="6"  placeholder="Search" aria-label="Search">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
+                    </form> -->
                     
                 </div>
                 
@@ -160,7 +160,7 @@
         
         
         <!-- admin-menu section -->
-        <section id="admin-munu" class="colored-bg">
+        <section id="admin-menu" class="colored-bg">
             <div class="container">
                 <div class="row">
 
@@ -199,16 +199,17 @@
                      
                   
 
-                            <div class="col-3">
+                            <div class="col-sm-3">
                                     <h2 class="h2-admin">Admin Menu</h2>
                                     <label for="admin-form">Enter Specific User ID</label>
                                     <input type="text" id="get-user-by-id" class="form-control input-lg"   placeholder="Enter Specific User ID" />
                                     <button type="submit" id="submit-userid" class="btn btn-secondary" style="display: inline" onclick="findUserId()">Find User</button>
                                     <button type="submit" id="reset-user"  class ="btn btn-light" style="display: inline"  onclick="resetUser()">Reset User</button>
+                                    
                                     <br />
-                                </div>
-                            
-                                <div class="col-3">
+                            </div>
+                               
+                               <div class ="col-sm-3">
                                     <label for="admin-select-option">Select Admin Options to View</label>
                                     <select id="admin-select-option" class="custom-select" onchange="viewUsers()">
                                         <option value="0">ALL USERS</option>
@@ -219,7 +220,7 @@
                                     <br />
                                 </div>
 
-                                <div class="col-10">
+                                <div class="col-sm-3">
                                         <div class="container" id="reimb-container">
                                             <div class="row">
                                                 <table class="table" id="reimb-table">
@@ -245,10 +246,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-<!--                             
-                            <a href="#" class="btn btn-primary">Read more</a>
-                            <a href="#" class="btn btn-secondary">Comments</a> -->
                         </article>
 
 
@@ -275,48 +272,7 @@
                     </div>
 
 
-                    <!-- Sidebar -->
-                    <aside class="col-md-4">
-                        <div class="sidebar-box">
-                            <h4>Categories</h4>
-                            <div class="list-group list-group-root">
-                                <a class="list-group-item" href="#">Home Page</a>
-                                <a class="list-group-item active" href="#about">About</a>
-                                <a class="list-group-item" href="#style-examples">Apply Reimbursement</a>
-                                <!-- <div class="list-group">
-                                    <a class="list-group-item" href="#three-column">View Reimbursement</a>
-                                    <a class="list-group-item" href="#one-column">One column / no sidebar</a>
-                                    <a class="list-group-item" href="#contact">Contact</a>	
-                                </div> -->
-                                <a class="list-group-item" href="#three-column">View Reimbursement</a>
-                                <!-- <a class="list-group-item" href="#">Sed aliquam libero ut velit bibendum</a>
-                                <a class="list-group-item" href="#">Maecenas condimentum velit vitae</a> -->
-                            </div>
-                        </div>
-
-                        <div class="sidebar-box sidebar-box-bg">
-                            <h4>About us</h4>
-                            <p>Brand new company: No.1 Fast-Reimbursement system. Learn more about the company <a href="#" class="readmore">Read More &raquo;</a></p>    
-                        </div>
-
-                        <!-- <div class="sidebar-box">
-                            <h4>Search site</h4>
-                            <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="text"  placeholder="Search" aria-label="Search">
-                                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </div> -->
-
-                        <div class="sidebar-box">
-                            <h4>Helpful Links</h4>
-                            <ul>
-                                <li><a href="http://www.themeforest.net/?ref=spykawg" title="premium templates">Premium HTML web templates from $10</a></li>
-                                <li><a href="http://www.dreamhost.com/r.cgi?259541" title="web hosting">Cheap web hosting from Dreamhost</a></li>
-                                <li><a href="http://tuxthemes.com" title="Tux Themes">Premium WordPress themes</a></li>
-                            </ul>
-                        </div>
-                    </aside> 
-
+                    
                 </div>
             </div> 
         </section>

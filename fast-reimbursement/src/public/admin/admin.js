@@ -160,8 +160,9 @@ function userResult(reimb) {
     let str = "";
     //console.log("reimb stats = " + reimb.status_id);
     if (reimb.status === "PENDING") {
-        //console.log("pending here");
-        str = `select onchange="getStatus(${reimb.id});`
+        // console.log("pending here");
+        // console.log(reimb.id);
+        // str = `select onchange="getStatus(${reimb.id});`
        
         tbody.innerHTML +=
             `<tr>
@@ -177,10 +178,10 @@ function userResult(reimb) {
             <td>${reimb.status}</td>
             <td id="td-admin-option">${gear}
                 <div id = "insertBtn">
-                    <button type="submit" class="btn btn-success" onclick="toApprove(${reimb.id})">Approve</button>
-                    <button type="submit" class="btn btn-danger" onclick="toDeny(${reimb.id})">Deny</button>
+                    <button class="btn btn-success" role="button" onclick="toApprove(${reimb.id})">Approve</button>
+                    <button class="btn btn-danger" role="button" onclick="toDeny(${reimb.id})">Deny</button>
                 </div>
-                </td>
+            </td>
         </tr>
         `
     }
@@ -203,6 +204,7 @@ function userResult(reimb) {
 
     }
 }//end userResult(reimb);
+
 
 
 
@@ -237,14 +239,14 @@ function getStatus(id) {
 }
 
 function toApprove(id) {
-    // console.log("approve clicked");
+     console.log("approve clicked");
     fetch(`../reimb/approve/${id}`, {
         method: 'PUT',
         body: localStorage.getItem('user')
     })
         .then(resp => resp.json())
         .then(resp => {
-            window.location = 'http://localhost:9001/admin/admin.html'
+            window.location = 'http://localhost:9001/admin/admin.html#admin-menu'
         })
         .catch(err => {
             console.log(err);
@@ -257,7 +259,7 @@ function toDeny(id) {
     })
         .then(resp => resp.json())
         .then(resp => {
-            window.location = 'http://localhost:9001/admin/admin.html'
+            window.location = 'http://localhost:9001/admin/admin.html#admin-menu'
         })
         .catch(err => {
             console.log(err);
