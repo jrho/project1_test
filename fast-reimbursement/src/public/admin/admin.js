@@ -138,9 +138,6 @@ function getAllUsers() {
         }).catch(err => {
             console.log(err);
         })
-
-
-
 }
 getAllUsers();
 
@@ -178,8 +175,8 @@ function userResult(reimb) {
             <td>${reimb.status}</td>
             <td id="td-admin-option">${gear}
                 <div id = "insertBtn">
-                    <button class="btn btn-success" role="button" onclick="toApprove(${reimb.id})">Approve</button>
-                    <button class="btn btn-danger" role="button" onclick="toDeny(${reimb.id})">Deny</button>
+                    <button class="btn btn-success" role="button" onclick="toSwalApprove(${reimb.id})">Approve</button>
+                    <button class="btn btn-danger" role="button" onclick="toSwalApprove(${reimb.id})">Deny</button>
                 </div>
             </td>
         </tr>
@@ -221,31 +218,76 @@ function userResult(reimb) {
 // greetingAdmin();
 
 
-function getStatus(id) {
-    let table = document.getElementById('reimb-result')
-    let tags = table.getElementsByTagName("td");
-    for (let i = 0; i < tags.length; i++) {
-        if (tags[i].innerText == id) {
-            let th = tags[i].parentElement.getElementsByTagName("th")[0];
-            let val = th.getElementsByTagName("select")[0].value;
-            if (val == 1) {
-                toApprove(id);
-            }
-            else if (val == 2) {
-                toDeny(id);
-            }
-        }
-    }
+// function getStatus(id) {
+//     let table = document.getElementById('reimb-result')
+//     let tags = table.getElementsByTagName("td");
+//     for (let i = 0; i < tags.length; i++) {
+//         if (tags[i].innerText == id) {
+//             let th = tags[i].parentElement.getElementsByTagName("th")[0];
+//             let val = th.getElementsByTagName("select")[0].value;
+//             if (val == 1) {
+//                 toApprove(id);
+//             }
+//             else if (val == 2) {
+//                 toDeny(id);
+//             }
+//         }
+//     }
+// }
+
+
+function toSwalApprove(id){
+    swal({
+        title: 'Are you sure?',
+        text: "Approve ID: "+id ,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) =>{
+          if(result.value){
+              toApprove(id),
+              swal('Applied!')
+          }
+          else{
+              swal('Cancelled')
+          }
+          
+        });
+
 }
 
+function toSwalDeny(id){
+    swal({
+        title: 'Are you sure?',
+        text: "Deny ID: "+id ,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) =>{
+          if(result.value){
+              toDeny(id),
+              swal('Applied!')
+          }
+          else{
+              swal('Cancelled')
+          }
+          
+        });
+
+}
 function toApprove(id) {
-     console.log("approve clicked");
+    console.log("approve clicked");
     fetch(`../reimb/approve/${id}`, {
         method: 'PUT',
         body: localStorage.getItem('user')
     })
         .then(resp => resp.json())
         .then(resp => {
+            getAllUsers();
             window.location = 'http://localhost:9001/admin/admin.html#admin-menu'
         })
         .catch(err => {
@@ -254,11 +296,13 @@ function toApprove(id) {
 
 }
 function toDeny(id) {
+    console.log("deny clicked");
     fetch(`../reimb/deny/${id}`, {
         method: 'PUT'
     })
         .then(resp => resp.json())
         .then(resp => {
+            getAllUsers();
             window.location = 'http://localhost:9001/admin/admin.html#admin-menu'
         })
         .catch(err => {
@@ -281,6 +325,29 @@ function viewUsers() {
 function findUserId(){
     let num =document.getElementById('get-user-by-id').value;
     findUser(num);
+
+}
+
+function findReimb(){
+    let num = document.getElementById('get-reimb-by-id').value;
+    console.log(num);
+    findReimbById(num);
+}
+
+function findReimbById(id){
+    fetch(`../reimb/reimbId/${id}`,{
+        method:'GET'
+    })
+        .then(resp => resp.json())
+        .then(resp => {
+            document.getElementById('reimb-result').innerHTML = '';
+            resp.forEach(reimb => {
+                userResult(reimb);
+            })
+        }).catch(err => {
+            console.log(err);
+        })
+
 
 }
 
@@ -316,8 +383,14 @@ function getUserByStatus(num) {
         });
 }
 
+
 function resetUser(){
     getAllUsers();
     //erase input box string
     document.getElementById("get-user-by-id").value="";
+}
+
+function resetReimb(){
+    getAllUsers();
+   document.getElementById('get-reimb-by-id').value="";
 }

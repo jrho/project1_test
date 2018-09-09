@@ -13,6 +13,8 @@
 
         <!-- Font Awesome -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
         <script src="admin.js"></script>
 
  
@@ -201,15 +203,23 @@
 
                             <div class="col-sm-3">
                                     <h2 class="h2-admin">Admin Menu</h2>
-                                    <label for="admin-form">Enter Specific User ID</label>
+                                    <label for="admin-form">Find by User ID</label>
                                     <input type="text" id="get-user-by-id" class="form-control input-lg"   placeholder="Enter Specific User ID" />
-                                    <button type="submit" id="submit-userid" class="btn btn-secondary" style="display: inline" onclick="findUserId()">Find User</button>
-                                    <button type="submit" id="reset-user"  class ="btn btn-light" style="display: inline"  onclick="resetUser()">Reset User</button>
+                                    <button type="submit" id="submit-userid" class="btn btn-secondary" style="display: inline" onclick="findUserId()">Find</button>
+                                    <button type="submit" id="reset-user"  class ="btn btn-light" style="display: inline"  onclick="resetUser()">Reset</button>
                                     
                                     <br />
                             </div>
+
+
+                            <div class = "col-sm-5">
+                                    <label>Find by Reimbursement ID</label>
+                                    <input type="text" id="get-reimb-by-id" class = "form-control input-lg" placeholder="Enter Specific Reimbursement ID" />
+                                    <button type="submit" id="submit-userid" class="btn btn-secondary" style="display: inline" onclick="findReimb()">Find</button>
+                                    <button type="submit" id="reset-user"  class ="btn btn-light" style="display: inline"  onclick="resetReimb()">Reset</button>
+                            </div>
                                
-                               <div class ="col-sm-3">
+                               <div class ="col-sm-5">
                                     <label for="admin-select-option">Select Admin Options to View</label>
                                     <select id="admin-select-option" class="custom-select" onchange="viewUsers()">
                                         <option value="0">ALL USERS</option>

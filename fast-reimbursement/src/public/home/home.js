@@ -1,9 +1,11 @@
 function applyReimb(event) {
-    event.preventDefault();
-    let finished = 0;
+     event.preventDefault();
+    let finishedSwal = 0;
+    
 
 
 
+  
 
     const amount = document.getElementById('input-amount').value;
     const description = document.getElementById('input-description').value;
@@ -18,7 +20,75 @@ function applyReimb(event) {
         auth,
         password
     };
+    let typeString="";
+    if(reimb.type==1)
+    {
+        typeString="LODGING";
+    }
+    else if(reimb.type==2)
+    {
+        typeString="TRAVEL";
+    }
+    else if(reimb.type==3)
+    {
+        typeString="FOOD";
+    }
+    else{
+        typeString="OTHER";
+    }
+   
+    // swal({
+    //     title: 'Is this Correct information?',
+    //     buttons:{
+    //         cancel:true,
+    //         confirm:"Submit"
+    //     }
+    // }).then(
+    //     finishedSwal=1
+    // );
+    swal({
+        title: 'Is this information correct?',
+        text: "Reimburse Amount: $"+ reimb.amount + " " +  "Reimburse Type: "+ typeString,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) =>{
+          if(result.value){
+              sendReimburse(reimb),
+              swal('Applied!')
+          }
+          else{
+              swal('Cancelled')
+          }
+          
+        });
+    // swal({
+    //     title: "Is this correct information??",
+    //     text: reimb.amount+ " " + reimb.type,
+    //     type: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: 'Yes',
+    //  },
+    //  function(isConfirm){
+    
+    //    if (isConfirm){
+    //     sendReimburse(reimb);
+    //     swal("Applied", "Your reimbursement is now pending", "success");
+         
+    
+    //     } else {
+    //       swal("Cancelled", "cancelled", "error");
+            
+    //     }
+    //  });  
 
+}
+function sendReimburse(reimb){
+    console.log("applied");
     fetch('../reimb', {
 
         method: 'POST',
@@ -31,43 +101,14 @@ function applyReimb(event) {
 
         .then(resp => resp.json())
         .then(resp => {
-            window.location = 'http://localhost:9001/home/home.html'
+            window.location = 'http://localhost:9001/home/home.html#view-reimb'
         })
         .catch(err => {
             console.log(err);
         });
 
-
 }
 
-function doSwal() {
-    swal({
-        title: "Confirmation",
-        text: "Are You Sure?",
-        buttons: {
-            cancel: true,
-            confirm: "Submit"
-        }
-
-    })
-        .then(val => {
-            if (val) {
-                swal({
-                    title: "Thank you",
-                    text: "You've applied reimbursement",
-                    icon: "success"
-                });
-
-            }
-        })
-        .then(applyReimb(event));
-
-
-
-
-
-
-}//end doSwal()
 
 
 //---------------------------------------------------------------------END OF APPLY REIMB----------------------------------------------------------------------
@@ -117,9 +158,4 @@ fetch(`../reimb/users/${user.id}`)
     });
 
     
-function greetingUser(){
-    let user = JSON.parse(localStorage.getItem('user'));
-    document.getElementById('greeting-user').innerHTML +=
-    `${user.id}`
-}
-greetingUser();
+

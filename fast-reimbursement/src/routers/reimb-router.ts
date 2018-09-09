@@ -62,6 +62,16 @@ reimbRouter.get('/status/:status', async (req, resp) => {
     }
 });
 
+reimbRouter.get('/reimbId/:id', async(req,resp)=>{
+    const id =+req.params.id;
+    try{
+        let reimb = await reimbDao.findByReimb(id);
+        resp.json(reimb);
+    }catch(err){
+        console.log(err);
+    }
+})
+
 /**
  * find reimb by user
  */

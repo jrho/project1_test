@@ -55,6 +55,22 @@ export async function findById(id: number): Promise<Reimb[]> {
     }
 }
 
+export async function findByReimb(id:number): Promise<Reimb[]>{
+    const client = await connectionPool.connect();
+
+    try{
+        const resp = await client.query(
+            `SELECT * FROM army.army_reimbursement
+            LEFT JOIN army.army_reimbursement_status USING(reimburse_status_id)
+            LEFT JOIN army.army_reimbursement_type USING(reimburse_type_id)
+            WHERE reimburse_id = $1`, [id]);
+        return resp.rows.map(reimbConverter);
+    }
+    finally{
+        client.release();
+    }
+}
+
 
 export async function findStatus(status: number): Promise<Reimb[]> {
     const client = await connectionPool.connect();
