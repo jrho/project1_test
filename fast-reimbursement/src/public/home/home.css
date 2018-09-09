@@ -6394,7 +6394,7 @@ button.bg-dark:focus {
   color: #fff !important; }
 
 .text-primary {
-  color: #000 !important; }
+  color: rgb(36, 33, 33) !important; }
 
 a.text-primary:hover, a.text-primary:focus {
   color: black !important; }
@@ -6642,7 +6642,8 @@ Jumbotrons / Sliders / Cards
   margin-bottom: 1rem; }
 
 .jumbotron-wrap-image {
-  background-image: linear-gradient(to bottom, black 0%, rgba(26, 26, 26, 0.8) 75%), url(../images/bg1.jpg);
+  /* background-image: linear-gradient(to bottom, black 0%, rgba(26, 26, 26, 0.8) 75%), url(../images/bg1.jpg); */
+  background-image:linear-gradient(to bottm, black 0%, rgba(26,26,26,0.8)75%), url(../images/bg1.jpg);
   background-position: top left;
   background-repeat: no-repeat;
   background-size: cover; }
@@ -6676,7 +6677,7 @@ Jumbotrons / Sliders / Cards
 .colored-bg-container {
   background-color: #427aa1;
   background-attachment: fixed;
-  background-image: linear-gradient(to bottom, #427aa1 0%, rgba(51, 95, 125, 0.95) 50%), url(../images/bg1.jpg);
+  background-image: linear-gradient(to bottom, #427aa1 0%, rgba(51, 95, 125, 0.95) 50%), url(images/bg1.jpg);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover; }
@@ -6684,7 +6685,8 @@ Jumbotrons / Sliders / Cards
 .gray-bg-container {
   background-color: #2f2f2f;
   background-attachment: fixed;
-  background-image: linear-gradient(to bottom, rgba(174, 174, 174, 0.95) 0%, rgba(238, 238, 238, 0.95) 50%), url(../images/bg1.jpg);
+  /* background-image: linear-gradient(to bottom, rgba(174, 174, 174, 0.95) 0%, rgba(238, 238, 238, 0.95) 50%), url(images/bg1.jpg); */
+  background-image: linear-gradient(to bottom, rgba(174, 174, 174, 0.95) 0%, rgba(238, 238, 238, 0.95) 50%), url(images/bg1.jpg);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
